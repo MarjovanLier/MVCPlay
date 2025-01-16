@@ -11,6 +11,11 @@ $router = new Router();
 // Define routes
 $router->add('GET', '/', [new HomeController(), 'index']);
 $router->add('GET', '/products', [new ProductController(), 'index']);
+$router->add('POST', '/products/add', [new ProductController(), 'add']);
+$router->add('GET', '/products/delete/{id}', [new ProductController(), 'delete']);
+$router->add('GET', '/products/edit/{id}', [new ProductController(), 'edit']);
+$router->add('GET', '/products/toggleChecked/{id}', [new ProductController(), 'toggleChecked']);
+
 
 // Dispatch the request
 $router->dispatch();

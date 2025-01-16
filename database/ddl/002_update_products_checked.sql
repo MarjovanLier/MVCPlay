@@ -1,0 +1,1 @@
+ALTER TABLE products ADD COLUMN checked INTEGER DEFAULT 0;
