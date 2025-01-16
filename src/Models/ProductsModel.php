@@ -51,7 +51,7 @@ class ProductsModel extends Model
      */
     public function updateProduct(int $id, string $name, string $description, float $price): void
     {
-        $updatedAt = new DateTime('now', new DateTimeZone('UTC'));
+        $updatedAt = (new DateTime('now', new DateTimeZone('UTC')))->format('Y-m-d H:i:s');
 
         $stmt = $this->db->prepare(
             "UPDATE products SET name = :name, description = :description, price = :price, updated_at = :updatedAt WHERE id = :id"

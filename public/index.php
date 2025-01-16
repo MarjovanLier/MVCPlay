@@ -14,6 +14,7 @@ $router->add('GET', '/products', [new ProductController(), 'index']);
 $router->add('POST', '/products/add', [new ProductController(), 'add']);
 $router->add('GET', '/products/delete/{id}', [new ProductController(), 'delete']);
 $router->add('GET', '/products/edit/{id}', [new ProductController(), 'edit']);
+$router->add('POST', '/products/edit/{id}', [new ProductController(), 'edit']);
 $router->add('GET', '/products/toggleChecked/{id}', [new ProductController(), 'toggleChecked']);
 
 
