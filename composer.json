@@ -17,5 +17,8 @@
   "require": {
     "php": "^8.3",
     "ext-pdo": "*"
+  },
+  "scripts": {
+    "db:init": "php scripts/db-init.php"
   }
 }
