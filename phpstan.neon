@@ -1,0 +1,13 @@
+parameters:
+    level: 5
+    phpVersion: 80300
+    treatPhpDocTypesAsCertain: false
+    tipsOfTheDay: false
+    reportWrongPhpDocTypeInVarTag: true
+    paths:
+        - core
+        - src
+    excludePaths:
+        analyseAndScan:
+            - src/Views/*
+    ignoreErrors:

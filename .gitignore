@@ -2,3 +2,5 @@
 /database.sqlite
 /.idea/
 /.php-cs-fixer.cache
+
+.qodo

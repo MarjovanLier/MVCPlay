@@ -19,7 +19,9 @@
     "ext-pdo": "*"
   },
   "scripts": {
-    "db:init": "php scripts/db-init.php"
+    "db:init": "php scripts/db-init.php",
+    "phpstan": "phpstan analyse src",
+    "tests": "pest --min=70"
   },
   "require-dev": {
     "pestphp/pest": "^3.7",
