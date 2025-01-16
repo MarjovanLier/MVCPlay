@@ -6,7 +6,6 @@ namespace App\Controllers;
 
 use App\Models\ProductsModel;
 use Core\Controller;
-use JetBrains\PhpStorm\NoReturn;
 
 class ProductController extends Controller
 {
@@ -81,7 +80,6 @@ class ProductController extends Controller
     }
 
 
-    #[NoReturn]
     public function toggleChecked(int $id): void
     {
         $productsModel = new ProductsModel();

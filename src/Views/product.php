@@ -66,4 +66,3 @@ use App\Models\Product;
 </table>
 </body>
 </html>
-

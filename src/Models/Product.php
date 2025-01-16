@@ -6,8 +6,13 @@ namespace App\Models;
 
 class Product
 {
-    public function __construct(private readonly int $id, private readonly string $name, private readonly string $description, private readonly float $price, private bool $checked)
-    {
+    public function __construct(
+        private readonly int $id,
+        private readonly string $name,
+        private readonly string $description,
+        private readonly float $price,
+        private bool $checked
+    ) {
     }
 
 
