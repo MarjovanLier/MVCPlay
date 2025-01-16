@@ -1,1 +1,4 @@
 /vendor/
+/database.sqlite
+/.idea/
+/.php-cs-fixer.cache
