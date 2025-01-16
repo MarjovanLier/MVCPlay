@@ -45,6 +45,6 @@ class View
      */
     private static function viewPath(string $view): string
     {
-        return sprintf('../src/views/%s.php', $view);
+        return sprintf('../src/Views/%s.php', $view);
     }
 }
