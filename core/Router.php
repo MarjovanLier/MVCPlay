@@ -8,6 +8,7 @@ class Router
 {
     private array $routes = [];
 
+
     /**
      * Adds a new route to the router.
      *
@@ -17,8 +18,6 @@ class Router
      * @param string $method The HTTP method (e.g., GET, POST).
      * @param string $path The URI path for the route.
      * @param callable $action The action to be executed when the route is matched.
-     *
-     * @return void
      */
     public function add(string $method, string $path, callable $action): void
     {
@@ -42,9 +41,11 @@ class Router
 
         foreach ($this->routes as $route) {
             if ($route['method'] === $requestMethod) {
-                $pattern = preg_replace('#\{[^}]+\}#', '([^/]+)', $route['path']);
+                $pattern = preg_replace('#\{[^}]+\}#', '([^/]+)', (string) $route['path']);
+
                 if (preg_match('#^' . $pattern . '$#', $requestUri, $matches)) {
                     array_shift($matches);
+
                     return call_user_func_array($route['action'], $matches);
                 }
             }
@@ -52,6 +53,7 @@ class Router
 
         http_response_code(404);
         echo '404 Not Found';
+
         return null;
     }
 }

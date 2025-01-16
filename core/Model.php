@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Core;
 
 use PDO;
-use RuntimeException;
 
 class Model
 {
     protected PDO $db;
+
 
     public function __construct()
     {
@@ -18,8 +18,8 @@ class Model
         if (!file_exists($dbPath)) {
             $this->db = new PDO('sqlite:' . $dbPath);
             $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $initializer = new DatabaseInitializer($this->db);
-            $initializer->initialize();
+            $databaseInitializer = new DatabaseInitializer($this->db);
+            $databaseInitializer->initialize();
         } else {
             $this->db = new PDO('sqlite:' . $dbPath);
             $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

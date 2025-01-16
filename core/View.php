@@ -15,9 +15,7 @@ class View
      *
      * @param string $view The name of the view file to render.
      * @param array $data An associative array of data to pass to the view.
-     *                    Default is an empty array.
-     *
-     * @return void
+     *                     Default is an empty array.
      */
     public static function render(string $view, array $data = []): void
     {
