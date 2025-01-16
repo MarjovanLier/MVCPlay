@@ -1,0 +1,17 @@
+{
+    "name": "marjovanlier/mvc-play",
+    "description": "Simple MVC",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Marjovanlier\\MvcPlay\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Marjo van Lier",
+            "email": "marjo.vanlier@gmail.com"
+        }
+    ],
+    "require": {}
+}
