@@ -1,0 +1,11 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: mvp-play
+    container_name: mvp-play
+    volumes:
+      - .:/var/www
+    ports:
+      - "8000:8000"
