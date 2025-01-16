@@ -1,6 +1,8 @@
 <?php
 
-require_once '../vendor/autoload.php';
+declare(strict_types=1);
+
+require_once __DIR__ . '/../vendor/autoload.php';
 
 use App\Controllers\HomeController;
 use App\Controllers\ProductController;
@@ -16,7 +18,6 @@ $router->add('GET', '/products/delete/{id}', [new ProductController(), 'delete']
 $router->add('GET', '/products/edit/{id}', [new ProductController(), 'edit']);
 $router->add('POST', '/products/edit/{id}', [new ProductController(), 'edit']);
 $router->add('GET', '/products/toggleChecked/{id}', [new ProductController(), 'toggleChecked']);
-
 
 // Dispatch the request
 $router->dispatch();
