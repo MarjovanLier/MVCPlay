@@ -1,6 +1,9 @@
 <?php
+
+use App\Models\Product;
+
 /* @var string $title */
-/* @var array<\App\Models\Product> $products */
+/* @var array<Product> $products */
 ?>
 
 <!DOCTYPE html>
@@ -8,10 +11,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $title ?></title>
+    <title><?php
+        echo $title; ?></title>
 </head>
 <body>
-<h1><?= $title ?></h1>
+<?php include 'menu.php'; ?>
+<h1><?php echo $title; ?></h1>
 
 <form action="/products/add" method="post">
     <input type="text" name="name" placeholder="Product Name" required>
@@ -31,21 +36,32 @@
     </tr>
     </thead>
     <tbody>
-    <?php foreach ($products as $product): ?>
+    <?php
+    foreach ($products as $product) { ?>
         <tr>
-            <td><?= $product->getId() ?></td>
-            <td><?= $product->getName() ?></td>
-            <td><?= $product->getPrice() ?></td>
-            <td><?= $product->isChecked() ? 'Yes' : 'No' ?></td>
+            <td><?php
+                echo $product->getId(); ?></td>
+            <td><?php
+                echo $product->getName(); ?></td>
+            <td><?php
+                echo $product->getPrice(); ?></td>
+            <td><?php
+                echo $product->isChecked() ? 'Yes' : 'No'; ?></td>
             <td>
-                <a href="/products/edit/<?= $product->getId() ?>">Edit</a>
-                <a href="/products/delete/<?= $product->getId() ?>">Delete</a>
-                <a href="/products/toggleChecked/<?= $product->getId() ?>">
-                    <?= $product->isChecked() ? 'Uncheck' : 'Check' ?>
+                <a href="/products/edit/<?php
+                echo $product->getId(); ?>">Edit</a>
+                <a href="/products/delete/<?php
+                echo $product->getId(); ?>">Delete</a>
+                <a href="/products/toggleChecked/<?php
+                echo $product->getId(); ?>">
+                    <?php
+                    echo $product->isChecked() ? 'Uncheck' : 'Check'; ?>
                 </a>
             </td>
         </tr>
-    <?php endforeach; ?>
+        <?php
+    }
+    ?>
     </tbody>
 </table>
 </body>

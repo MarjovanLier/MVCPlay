@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controllers;
 
 use App\Models\ProductsModel;
@@ -10,15 +12,15 @@ class ProductController extends Controller
 {
     public function index(): void
     {
-        $products = new ProductsModel();
-
+        $productsModel = new ProductsModel();
 
         $data = [
+            'products' => $productsModel->getProducts(),
             'title' => 'Products',
-            'products' => $products->getProducts()
         ];
         $this->renderView('product', $data);
     }
+
 
     public function add(): void
     {
@@ -31,9 +33,11 @@ class ProductController extends Controller
             $productsModel->addProduct($name, $description, $price);
 
             header('Location: /products');
+
             exit;
         }
     }
+
 
     public function delete(int $id): void
     {
@@ -41,8 +45,10 @@ class ProductController extends Controller
         $productsModel->deleteProduct($id);
 
         header('Location: /products');
+
         exit;
     }
+
 
     public function edit(int $id): void
     {
@@ -56,23 +62,33 @@ class ProductController extends Controller
             $productsModel->updateProduct($id, $name, $description, $price);
 
             header('Location: /products');
+
             exit;
         }
 
         $product = $productsModel->getProductById($id);
+
+        if ($product === null) {
+            header('Location: /products');
+            exit;
+        }
+
         $data = [
+            'product' => $product,
             'title' => 'Edit Product',
-            'product' => $product
         ];
         $this->renderView('edit_product', $data);
     }
 
-    #[NoReturn] public function toggleChecked(int $id): void
+
+    #[NoReturn]
+    public function toggleChecked(int $id): void
     {
         $productsModel = new ProductsModel();
         $productsModel->toggleChecked($id);
 
         header('Location: /products');
+
         exit;
     }
 }
