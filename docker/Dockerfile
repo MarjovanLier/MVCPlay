@@ -13,13 +13,8 @@ RUN apt-get update && apt-get install -y \
 # Set the working directory inside the container
 WORKDIR /var/www
 
-COPY . .
-
-# Install any dependencies
-RUN /usr/bin/composer install --no-interaction --prefer-dist --optimize-autoloader
-
 # Expose port 8000 to the outside world
 EXPOSE 8000
 
-# Command to run the PHP built-in server
-CMD ["php", "-S", "0.0.0.0:8000", "-t", "public"]
+# Command build script located at docker/build.sh
+CMD ["sh", "docker/build.sh"]
