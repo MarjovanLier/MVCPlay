@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-cd /var/www
+cd /var/www || exit
 
 # Install dependencies
 composer install
