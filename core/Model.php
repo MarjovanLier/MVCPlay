@@ -14,6 +14,6 @@ class Model
     public function __construct()
     {
         // Initialize and set up a sqlite database
-        $this->db = new PDO('sqlite:database.sqlite');
+        $this->db = new PDO('sqlite:../database.sqlite');
     }
 }

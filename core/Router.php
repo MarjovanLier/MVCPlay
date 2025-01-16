@@ -8,41 +8,46 @@ class Router
 {
     private array $routes = [];
 
-
-    public function add($method, $path, $controller, $methodName): void
+    /**
+     * Adds a new route to the router.
+     *
+     * This method adds a new route to the internal routes array.
+     * The route is defined by the HTTP method, path, and action.
+     *
+     * @param string $method The HTTP method (e.g., GET, POST).
+     * @param string $path The URI path for the route.
+     * @param callable $action The action to be executed when the route is matched.
+     *
+     * @return void
+     */
+    public function add(string $method, string $path, callable $action): void
     {
-        $this->routes[] = compact('method', 'path', 'controller', 'methodName');
+        $this->routes[] = compact('method', 'path', 'action');
     }
 
 
-    public function dispatch()
+    /**
+     * Dispatches the current request to the appropriate route.
+     *
+     * This method matches the current HTTP request method and URI to the defined routes.
+     * If a matching route is found, it calls the corresponding controller method.
+     * If no matching route is found, it returns a 404 Not Found response.
+     *
+     * @return mixed The result of the controller method call, or null if no matching route is found.
+     */
+    public function dispatch(): mixed
     {
         $requestMethod = $_SERVER['REQUEST_METHOD'];
         $requestUri = strtok($_SERVER['REQUEST_URI'], '?');
 
         foreach ($this->routes as $route) {
             if ($route['method'] === $requestMethod && $route['path'] === $requestUri) {
-                if (is_callable([$route['controller'], $route['methodName']])) {
-                    return call_user_func(
-                        [
-                            new $route['class'](),
-                            $route['methodName'],
-                        ],
-                    );
-                }
-
-                $controller = $route['controller'];
-                $method = $route['methodName'];
-
-                if (class_exists($controller) && method_exists($controller, $method)) {
-                    return (new $controller())->{$method}();
-                }
+                return call_user_func($route['action']);
             }
         }
 
         http_response_code(404);
         echo '404 Not Found';
-
         return null;
     }
 }
