@@ -41,8 +41,12 @@ class Router
         $requestUri = strtok($_SERVER['REQUEST_URI'], '?');
 
         foreach ($this->routes as $route) {
-            if ($route['method'] === $requestMethod && $route['path'] === $requestUri) {
-                return call_user_func($route['action']);
+            if ($route['method'] === $requestMethod) {
+                $pattern = preg_replace('#\{[^}]+\}#', '([^/]+)', $route['path']);
+                if (preg_match('#^' . $pattern . '$#', $requestUri, $matches)) {
+                    array_shift($matches);
+                    return call_user_func_array($route['action'], $matches);
+                }
             }
         }
 
